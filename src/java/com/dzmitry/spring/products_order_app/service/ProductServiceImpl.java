@@ -32,4 +32,10 @@ public class ProductServiceImpl implements ProductService {
     public void saveOrUpdateProduct(Product product) {
         productDAO.saveOrUpdateProduct(product);
     }
+
+    @Override
+    @Transactional
+    public void deleteProduct(int id) {
+        productDAO.deleteProduct(id);
+    }
 }
