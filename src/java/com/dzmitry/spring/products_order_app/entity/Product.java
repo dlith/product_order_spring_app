@@ -3,7 +3,6 @@ package com.dzmitry.spring.products_order_app.entity;
 
 
 import javax.persistence.*;
-import java.sql.Date;
 
 @Entity
 @Table(name="product")
@@ -18,27 +17,13 @@ public class Product {
     private String created;
     private String modified;
 
+    public Product() {
+    }
 
     public Product(String name, String description, double price) {
         this.name = name;
         this.description = description;
         this.price = price;
-    }
-
-    public Product() {
-
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", created=" + created +
-                ", modified=" + modified +
-                '}';
     }
 
     public int getId() {
@@ -79,7 +64,6 @@ public class Product {
 
     public void setCreated(String created) {
         this.created = created;
-        System.out.println("CREATED SET");
     }
 
     public String getModified() {
@@ -88,6 +72,17 @@ public class Product {
 
     public void setModified(String modified) {
         this.modified = modified;
-        System.out.println("MODIFIED SET");
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", created=" + created +
+                ", modified=" + modified +
+                '}';
     }
 }
