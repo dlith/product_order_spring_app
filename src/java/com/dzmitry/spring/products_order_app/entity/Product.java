@@ -3,6 +3,7 @@ package com.dzmitry.spring.products_order_app.entity;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="product")
@@ -16,6 +17,8 @@ public class Product {
     private double price;
     private String created;
     private String modified;
+    @ManyToMany(mappedBy = "products")
+    private List<Order> orders;
 
     public Product() {
     }
@@ -72,6 +75,14 @@ public class Product {
 
     public void setModified(String modified) {
         this.modified = modified;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     @Override

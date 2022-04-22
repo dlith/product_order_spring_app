@@ -22,19 +22,19 @@
         <c:url var="deleteButton" value="/deleteProduct">
             <c:param name="idProduct" value="${prod.id}"/>
         </c:url>
-    <tr>
-        <td>${prod.name}</td>
-        <td>${prod.description}</td>
-        <td>${prod.price}</td>
-        <td>${prod.created}</td>
-        <td>${prod.modified}</td>
-        <td>
-            <input type="button" value="Update" onclick="window.location.href='${updateButton}'">
-        </td>
-        <td>
-            <input type="button" value="Delete" onclick="window.location.href='${deleteButton}'">
-        </td>
-    <tr>
+        <tr>
+            <td>${prod.name}</td>
+            <td>${prod.description}</td>
+            <td>${prod.price}</td>
+            <td>${prod.created}</td>
+            <td>${prod.modified}</td>
+            <td>
+                <input type="button" value="Update" onclick="window.location.href='${updateButton}'">
+            </td>
+            <td>
+                <input type="button" value="Delete" onclick="window.location.href='${deleteButton}'">
+            </td>
+        <tr>
     </c:forEach>
 </table>
 <br>

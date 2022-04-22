@@ -14,6 +14,8 @@ public class Order {
     @Column(name = "order_name")
     private String orderName;
     private String email;
+    private String created;
+    private String modified;
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH})
     @JoinTable(
             name = "order_products",
@@ -67,6 +69,22 @@ public class Order {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    public String getCreated() {
+        return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
+    }
+
+    public String getModified() {
+        return modified;
+    }
+
+    public void setModified(String modified) {
+        this.modified = modified;
     }
 
     @Override

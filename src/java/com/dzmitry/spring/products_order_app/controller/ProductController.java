@@ -2,8 +2,9 @@ package com.dzmitry.spring.products_order_app.controller;
 
 
 
+import com.dzmitry.spring.products_order_app.entity.Order;
 import com.dzmitry.spring.products_order_app.entity.Product;
-import com.dzmitry.spring.products_order_app.service.ProductService;
+import com.dzmitry.spring.products_order_app.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +19,7 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    private ProductService productService;
+    private MainService mainService;
 
     @RequestMapping("/")
     public String showFirstView(){
@@ -27,21 +28,21 @@ public class ProductController {
 
     @RequestMapping("/products")
     public String showAllProducts(Model model){
-        List<Product> allProducts = productService.getAllProducts();
+        List<Product> allProducts = mainService.getAllProducts();
         model.addAttribute("allProducts", allProducts);
         return "all-products";
     }
 
     @RequestMapping("/updateInfo")
     public String updateProduct(@RequestParam("prodId") int id, Model model){
-        Product product = productService.getProduct(id);
+        Product product = mainService.getProduct(id);
         model.addAttribute("product", product);
         return "product-info";
     }
 
     @RequestMapping("/saveProduct")
     public String saveProduct(@ModelAttribute("product") Product product){
-        productService.saveOrUpdateProduct(product);
+        mainService.saveOrUpdateProduct(product);
         return "redirect:/products";
     }
 
@@ -53,7 +54,21 @@ public class ProductController {
 
     @RequestMapping("/deleteProduct")
     public String deleteProduct(@RequestParam("idProduct") int id){
-        productService.deleteProduct(id);
+        mainService.deleteProduct(id);
         return "redirect:/products";
+    }
+
+    @RequestMapping("/orders")
+    public String showAllOrders(Model model){
+        List<Order> allOrders = mainService.getAllOrders();
+        model.addAttribute("allOrders", allOrders);
+        return "all-orders";
+    }
+
+    @RequestMapping("/openOrderProduct")
+    public String openOrderProduct(@RequestParam("orderId") int id, Model model){
+        Order order  = mainService.getOrder(id);
+        model.addAttribute("product", order.getProducts());
+        return "order-products-info";
     }
 }

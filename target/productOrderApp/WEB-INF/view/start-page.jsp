@@ -7,6 +7,9 @@
 <br>
 <br>
 <a href="products">All products</a>
+<br>
+<br>
+<a href="orders">All orders</a>
 
 </body>
 </html>

@@ -5,13 +5,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Repository
 public class ProductDAOImpl implements ProductDAO{
+
+    public static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -28,15 +29,14 @@ public class ProductDAOImpl implements ProductDAO{
 
     @Override
     public void saveOrUpdateProduct(Product product) {
-        if(product.getId()>0){
-            sessionFactory.getCurrentSession()
-                    .createQuery("update Product set name = '" + product.getName() + "'," +
-                            " description = '" + product.getDescription() + "', " +
-                            " price = " + product.getPrice() + "where id = " + product.getId()).executeUpdate();
-        }else {
-            Session session = sessionFactory.getCurrentSession();
-            session.saveOrUpdate(product);
+        if(product.getCreated() == null){
+            product.setCreated(sdf.format(new Timestamp(System.currentTimeMillis())));
         }
+        if(product.getId() > 1){
+            product.setModified(sdf.format(new Timestamp(System.currentTimeMillis())));
+        }
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(product);
     }
 
     @Override
