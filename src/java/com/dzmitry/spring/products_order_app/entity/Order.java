@@ -16,7 +16,7 @@ public class Order {
     private String email;
     private String created;
     private String modified;
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "order_products",
             joinColumns = @JoinColumn(name = "id_order"),

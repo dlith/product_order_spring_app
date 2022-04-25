@@ -54,4 +54,10 @@ public class MainServiceImpl implements MainService {
     public Order getOrder(int id) {
         return orderDAO.getOrder(id);
     }
+
+    @Override
+    @Transactional
+    public void saveOrUpdateOrder(Order order) {
+        orderDAO.saveOrUpdateOrder(order);
+    }
 }

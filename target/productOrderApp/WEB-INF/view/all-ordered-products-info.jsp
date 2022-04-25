@@ -22,5 +22,10 @@
 </table>
 <br>
 <br>
+<c:url var="AddOrderProd" value="/addNewOrderProduct">
+    <c:param name="orderId" value="${orderId}"/>
+</c:url>
+<input type="button" value="Add"
+       onclick="window.location.href='${AddOrderProd}'"/>
 </body>
 </html>

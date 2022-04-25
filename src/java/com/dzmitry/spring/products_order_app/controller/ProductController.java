@@ -49,7 +49,7 @@ public class ProductController {
     @RequestMapping("/addNewProduct")
     public String addProduct(Model model){
         model.addAttribute("product", new Product());
-        return"product-info";
+        return "product-info";
     }
 
     @RequestMapping("/deleteProduct")
@@ -69,6 +69,20 @@ public class ProductController {
     public String openOrderProduct(@RequestParam("orderId") int id, Model model){
         Order order  = mainService.getOrder(id);
         model.addAttribute("product", order.getProducts());
-        return "order-products-info";
+        model.addAttribute("orderId", id);
+        return "all-ordered-products-info";
+    }
+
+    @RequestMapping("/addNewOrderProduct")
+    public String addOrderProduct(@RequestParam("orderId") int id, Model model){
+        Order order = mainService.getOrder(id);
+        model.addAttribute("order", order);
+        return "order-product-info";
+    }
+
+    @RequestMapping("/saveOrderProduct")
+    public String saveOrderProduct(@ModelAttribute("orderProduct") Order order){
+        //mainService.saveOrUpdateOrder(order);
+        return "redirect:/openOrderProduct?orderId="+ order.getId();
     }
 }

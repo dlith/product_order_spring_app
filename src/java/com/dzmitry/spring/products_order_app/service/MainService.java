@@ -13,4 +13,5 @@ public interface MainService {
 
     public List<Order> getAllOrders();
     public Order getOrder(int id);
+    public void saveOrUpdateOrder(Order order);
 }
