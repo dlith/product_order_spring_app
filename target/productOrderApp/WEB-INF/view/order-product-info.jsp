@@ -11,9 +11,9 @@
 
     <form:hidden path="id"/>
 
-    <c:forEach var="pr" items="${order.products}">
+    <c:forEach var="pr" items="${freeProducts}">
         <form:checkbox path="products" value="$${pr}"/>
-        ${pr}
+        ${pr.id} &nbsp; ${pr.name} &nbsp; ${pr.description}
         <br>
     </c:forEach>
 

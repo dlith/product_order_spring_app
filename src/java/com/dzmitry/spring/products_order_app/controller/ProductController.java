@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Controller
@@ -77,11 +79,16 @@ public class ProductController {
     public String addOrderProduct(@RequestParam("orderId") int id, Model model){
         Order order = mainService.getOrder(id);
         model.addAttribute("order", order);
+
+        List<Product> products = mainService.getAllProducts();
+        products.removeAll(order.getProducts());
+        model.addAttribute("freeProducts", products);
+
         return "order-product-info";
     }
 
     @RequestMapping("/saveOrderProduct")
-    public String saveOrderProduct(@ModelAttribute("orderProduct") Order order){
+    public String saveOrderProduct(@ModelAttribute("orderProduct") Order order, @ModelAttribute("orderProducts2save") List<Product> products){
         //mainService.saveOrUpdateOrder(order);
         return "redirect:/openOrderProduct?orderId="+ order.getId();
     }

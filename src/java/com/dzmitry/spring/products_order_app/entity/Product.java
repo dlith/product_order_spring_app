@@ -96,4 +96,10 @@ public class Product {
                 ", modified=" + modified +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Product product = (Product) obj;
+        return this.getId() == product.getId();
+    }
 }
