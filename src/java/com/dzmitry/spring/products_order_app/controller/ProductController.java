@@ -88,7 +88,7 @@ public class ProductController {
     }
 
     @RequestMapping("/saveOrderProduct")
-    public String saveOrderProduct(@ModelAttribute("orderProduct") Order order, @ModelAttribute("orderProducts2save") List<Product> products){
+    public String saveOrderProduct(@ModelAttribute("order") Order order){
         //mainService.saveOrUpdateOrder(order);
         return "redirect:/openOrderProduct?orderId="+ order.getId();
     }

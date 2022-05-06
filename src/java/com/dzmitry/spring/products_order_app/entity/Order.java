@@ -1,6 +1,7 @@
 package com.dzmitry.spring.products_order_app.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 

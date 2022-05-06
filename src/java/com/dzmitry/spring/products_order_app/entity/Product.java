@@ -87,14 +87,17 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", created=" + created +
-                ", modified=" + modified +
-                '}';
+        return id + "," + name + "," + description + "," + price;
+
+
+//        return "Product{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", description='" + description + '\'' +
+//                ", price=" + price +
+//                ", created=" + created +
+//                ", modified=" + modified +
+//                '}';
     }
 
     @Override
